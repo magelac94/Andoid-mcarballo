@@ -50,6 +50,18 @@ class TodoListAdapter(private var actions: List<Action>) :
             is TodoPrimaryViewHolder -> {
                 holder.actionText.text = action.description
                 holder.spinnerPrioText.text = action.priority
+
+                var color  = R.color.colorCompras
+                val cat = action.category
+
+                when (cat) {
+                    "Work"      ->  color = R.color.colorTrabajo
+                    "Study"     ->  color = R.color.colorEstudio
+                    "Shopping"  ->  color = R.color.colorCompras
+                    "Leisure"   ->  color = R.color.colorOcio
+                }
+
+                holder.textViewCatColor.setBackgroundResource(color)
             }
             is TodoSecondaryViewHolder -> {
                 holder.actionTypeText.text = "${action.actionType}"
@@ -61,6 +73,7 @@ class TodoListAdapter(private var actions: List<Action>) :
     inner class TodoPrimaryViewHolder(view: View) : TodoViewHolder(view) {
         val actionText: TextView = view.todoAction
         val spinnerPrioText : TextView = view.priority
+        val textViewCatColor : TextView = view.textViewColor
     }
 
     inner class TodoSecondaryViewHolder(view: View) : TodoViewHolder(view) {

@@ -27,12 +27,13 @@ class AddActivity : AppCompatActivity(), AddFragment.OnFragmentInteractionListen
 
     }
 
-    override fun onFragmentInteraction(input: String, spinner_prio: String) {
+    override fun onFragmentInteraction(input: String, spinner_prio: String, color: String) {
         setResult(
             Activity.RESULT_OK,
             Intent(this, TodoActivity::class.java)
                 .putExtra(TodoActivity.resultInput, input)
                 .putExtra(TodoActivity.resultPriority, spinner_prio)
+                .putExtra(TodoActivity.resultColor, color)
         )
         finish()
     }

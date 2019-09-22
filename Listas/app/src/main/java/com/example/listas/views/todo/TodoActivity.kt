@@ -88,16 +88,16 @@ class TodoActivity : AppCompatActivity() {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
                         addActionToTodoList(it.getStringExtra(resultInput), it.getStringExtra(
-                            resultInput))
+                            resultPriority), it.getStringExtra(resultColor))
                     }
                 }
             }
         }
     }
 
-    private fun addActionToTodoList(action: String, priority: String) {
+    private fun addActionToTodoList(action: String, priority: String, color: String) {
 
-        actions.add(Action(0, action, priority))
+        actions.add(Action(0, action, priority, color))
 
 
         // Escondo el texto inicial, haciendo invisible el textview
@@ -121,5 +121,6 @@ class TodoActivity : AppCompatActivity() {
 
         const val resultInput = "String:Input"
         const val resultPriority = "String:Priority"
+        const val resultColor = "String:Color"
     }
 }

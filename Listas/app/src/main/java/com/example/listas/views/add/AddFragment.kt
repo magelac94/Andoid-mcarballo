@@ -26,7 +26,7 @@ class AddFragment : Fragment() {
     lateinit var spinner_text_prio : TextView
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(input: String, spinner_prio: String)
+        fun onFragmentInteraction(input: String, spinner_prio: String, color: String)
     }
 
     private var listener: OnFragmentInteractionListener? = null
@@ -76,7 +76,6 @@ class AddFragment : Fragment() {
             ) {
                 //spinner_text.text = spinnercats.get(position)
             }
-
         }
 
         // SPINNER DE LAS PRIORIDADES
@@ -112,10 +111,7 @@ class AddFragment : Fragment() {
         if (input.textString().isEmpty()) {
             return
         }
-        if (spinner_prio.onItemSelectedListener.toString().isEmpty()){
-            return
-        }
-        listener?.onFragmentInteraction(input.textString(),spinner_prio.onItemSelectedListener.toString())
+        listener?.onFragmentInteraction(input.textString(),spinner_prio.selectedItem.toString(),spinner_cat.selectedItem.toString())
     }
 
     override fun onDetach() {
