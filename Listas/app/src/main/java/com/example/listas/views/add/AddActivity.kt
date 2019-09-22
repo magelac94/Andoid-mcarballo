@@ -24,13 +24,6 @@ class AddActivity : AppCompatActivity(), AddFragment.OnFragmentInteractionListen
                 .add(R.id.container, AddFragment(), null)
                 .commit()
 
-
-
-//        var adapter = ArrayAdapter.createFromResource(this, R.array.categories, android.R.layout.simple_spinner_item) as ArrayAdapter<CharSequence>
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-//        spinner_cat.setAdapter(adapter)
-////        spinner_cat.onItemSelectedListener(this)
-
     }
 
     override fun onFragmentInteraction(input: String) {

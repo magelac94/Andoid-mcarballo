@@ -3,10 +3,12 @@ package com.example.listas.views.todo
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.listas.R
 import com.example.listas.data.Action
+import kotlinx.android.synthetic.main.fragment_add.view.*
 import kotlinx.android.synthetic.main.layout_todo_row.view.*
 import kotlinx.android.synthetic.main.layout_todo_row_secondary.view.*
 
@@ -47,21 +49,26 @@ class TodoListAdapter(private var actions: List<Action>) :
         when (holder) {
             is TodoPrimaryViewHolder -> {
                 holder.actionText.text = action.description
+                holder.priorityText.text = action.priority
             }
             is TodoSecondaryViewHolder -> {
                 holder.actionTypeText.text = "${action.actionType}"
                 holder.actionText.text = action.description
+             //   holder.actionPrio.text = action.priority
             }
         }
     }
 
     inner class TodoPrimaryViewHolder(view: View) : TodoViewHolder(view) {
         val actionText: TextView = view.todoAction
+        val priorityText: TextView = view.priority
+       // val spinnerTextprio : TextView = view.spinner_text_prio
     }
 
     inner class TodoSecondaryViewHolder(view: View) : TodoViewHolder(view) {
         val actionTypeText: TextView = view.todoType
         val actionText: TextView = view.todoActionSecondary
+        val priorityText: TextView = view.todoActionSecondary
     }
 
     abstract inner class TodoViewHolder(view: View) : RecyclerView.ViewHolder(view)

@@ -22,30 +22,7 @@ class TodoFragment : Fragment() {
         super.onCreate(savedInstanceState)
         actions = arguments?.getParcelableArrayList(actionParams) ?: listOf()
 
-
     }
-//
-//    fun onCheckboxClicked(view: View) {
-//
-//        var txt = view.findViewById(R.id.todoAction) as TextView
-//        //txt.setText("Si Funciona")
-//
-//        if (view is CheckBox) {
-//            val checked: Boolean = view.isChecked
-//
-//            when (view.id) {
-//                R.id.checkBox1 -> {
-//                    if (checked) {
-//                        txt.paintFlags = txt.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-//                    } else {
-//                        txt.paintFlags = txt.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
-//                    }
-//                }
-//            }
-//        }
-//    }
-
-
 
 
     override fun onCreateView(
@@ -58,7 +35,6 @@ class TodoFragment : Fragment() {
 
         todoList.layoutManager = LinearLayoutManager(activity)
         todoList.adapter = TodoListAdapter(actions)
-
 
     }
 

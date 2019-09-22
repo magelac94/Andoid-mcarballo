@@ -1,5 +1,6 @@
 package com.example.listas.views.todo
 
+
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Paint
@@ -10,6 +11,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.CheckBox
 import android.widget.LinearLayout
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.listas.R
@@ -85,15 +87,17 @@ class TodoActivity : AppCompatActivity() {
             addActionRequestCode -> {
                 if (resultCode == Activity.RESULT_OK) {
                     data?.let {
-                        addActionToTodoList(it.getStringExtra(resultInput))
+                        addActionToTodoList(it.getStringExtra(resultInput), it.getStringExtra(
+                            resultInput))
                     }
                 }
             }
         }
     }
 
-    private fun addActionToTodoList(action: String) {
-        actions.add(Action(0, action))
+    private fun addActionToTodoList(action: String, priority: String) {
+
+        actions.add(Action(0, action, priority))
 
 
         // Escondo el texto inicial, haciendo invisible el textview

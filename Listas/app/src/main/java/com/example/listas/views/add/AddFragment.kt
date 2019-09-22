@@ -2,6 +2,7 @@ package com.example.listas.views.add
 
 import android.content.Context
 import android.os.Bundle
+import android.renderscript.RenderScript
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,11 +14,15 @@ import androidx.fragment.app.Fragment
 import com.example.listas.R
 import com.example.listas.extensions.textString
 import kotlinx.android.synthetic.main.fragment_add.*
+import kotlinx.android.synthetic.main.layout_todo_row.*
 
 class AddFragment : Fragment() {
 
     lateinit var spinner_cat : Spinner
     lateinit var spinner_text : TextView
+
+    lateinit var spinner_prio : Spinner
+    lateinit var spinner_text_prio : TextView
 
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction(input: String)
@@ -48,10 +53,11 @@ class AddFragment : Fragment() {
             onAddButtonPressed()
         }
 
+        // SPINNER DE LAS CATEGORIAS
         spinner_cat = view.findViewById(R.id.spinner_category) as Spinner
         spinner_text = view.findViewById(R.id.spinner_text) as TextView
 
-        val spinnercats = arrayOf("Trabajo","Estudio","Compras","Ocio")
+        val spinnercats = arrayOf("Work","Study","Shopping","Leisure")
 
         spinner_cat.adapter = ArrayAdapter<String>( activity, android.R.layout.simple_list_item_1,spinnercats)
 
@@ -68,6 +74,32 @@ class AddFragment : Fragment() {
                 id: Long
             ) {
              //   spinner_text.text = spinnercats.get(position)
+            }
+
+        }
+
+        // SPINNER DE LAS PRIORIDADES
+
+        spinner_prio = view.findViewById(R.id.spinner_prio) as Spinner
+        spinner_text_prio = view.findViewById(R.id.spinner_text_prio) as TextView
+
+        val spinnerprio = arrayOf("High Priority","Medium Priority", "Low Priority")
+
+        spinner_prio.adapter = ArrayAdapter<String>( activity, android.R.layout.simple_list_item_1,spinnerprio)
+
+        spinner_prio.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                spinner_text_prio.text = " Please select an category"
+            }
+
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                //   spinner_text.text = spinnercats.get(position)
             }
 
         }
