@@ -49,26 +49,23 @@ class TodoListAdapter(private var actions: List<Action>) :
         when (holder) {
             is TodoPrimaryViewHolder -> {
                 holder.actionText.text = action.description
-                holder.priorityText.text = action.priority
+                holder.spinnerPrioText.text = action.priority
             }
             is TodoSecondaryViewHolder -> {
                 holder.actionTypeText.text = "${action.actionType}"
                 holder.actionText.text = action.description
-             //   holder.actionPrio.text = action.priority
             }
         }
     }
 
     inner class TodoPrimaryViewHolder(view: View) : TodoViewHolder(view) {
         val actionText: TextView = view.todoAction
-        val priorityText: TextView = view.priority
-       // val spinnerTextprio : TextView = view.spinner_text_prio
+        val spinnerPrioText : TextView = view.priority
     }
 
     inner class TodoSecondaryViewHolder(view: View) : TodoViewHolder(view) {
         val actionTypeText: TextView = view.todoType
         val actionText: TextView = view.todoActionSecondary
-        val priorityText: TextView = view.todoActionSecondary
     }
 
     abstract inner class TodoViewHolder(view: View) : RecyclerView.ViewHolder(view)

@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.listas.R
 import com.example.listas.extensions.textString
@@ -25,7 +26,7 @@ class AddFragment : Fragment() {
     lateinit var spinner_text_prio : TextView
 
     interface OnFragmentInteractionListener {
-        fun onFragmentInteraction(input: String)
+        fun onFragmentInteraction(input: String, spinner_prio: String)
     }
 
     private var listener: OnFragmentInteractionListener? = null
@@ -59,7 +60,7 @@ class AddFragment : Fragment() {
 
         val spinnercats = arrayOf("Work","Study","Shopping","Leisure")
 
-        spinner_cat.adapter = ArrayAdapter<String>( activity, android.R.layout.simple_list_item_1,spinnercats)
+        spinner_cat.adapter = ArrayAdapter<String>( view.context, android.R.layout.simple_list_item_1,spinnercats)
 
         spinner_cat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
@@ -73,7 +74,7 @@ class AddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-             //   spinner_text.text = spinnercats.get(position)
+                //spinner_text.text = spinnercats.get(position)
             }
 
         }
@@ -85,12 +86,12 @@ class AddFragment : Fragment() {
 
         val spinnerprio = arrayOf("High Priority","Medium Priority", "Low Priority")
 
-        spinner_prio.adapter = ArrayAdapter<String>( activity, android.R.layout.simple_list_item_1,spinnerprio)
+        spinner_prio.adapter = ArrayAdapter<String>( view.context, android.R.layout.simple_list_item_1,spinnerprio)
 
         spinner_prio.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                spinner_text_prio.text = " Please select an category"
+                spinner_text_prio.text = " Please select an priority"
             }
 
             override fun onItemSelected(
@@ -99,7 +100,8 @@ class AddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                //   spinner_text.text = spinnercats.get(position)
+                spinner_text.text = spinnercats.get(position)
+             //   priority.text = spinnercats.get(position)
             }
 
         }
@@ -110,7 +112,10 @@ class AddFragment : Fragment() {
         if (input.textString().isEmpty()) {
             return
         }
-        listener?.onFragmentInteraction(input.textString())
+        if (spinner_prio.onItemSelectedListener.toString().isEmpty()){
+            return
+        }
+        listener?.onFragmentInteraction(input.textString(),spinner_prio.onItemSelectedListener.toString())
     }
 
     override fun onDetach() {

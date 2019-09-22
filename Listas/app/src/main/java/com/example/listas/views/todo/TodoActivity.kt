@@ -120,5 +120,6 @@ class TodoActivity : AppCompatActivity() {
     companion object {
 
         const val resultInput = "String:Input"
+        const val resultPriority = "String:Priority"
     }
 }

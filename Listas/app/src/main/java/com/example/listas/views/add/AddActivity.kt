@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.listas.views.todo.TodoActivity
 import com.example.listas.R
 import kotlinx.android.synthetic.main.activity_add.*
+import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddActivity : AppCompatActivity(), AddFragment.OnFragmentInteractionListener {
 
@@ -26,11 +27,12 @@ class AddActivity : AppCompatActivity(), AddFragment.OnFragmentInteractionListen
 
     }
 
-    override fun onFragmentInteraction(input: String) {
+    override fun onFragmentInteraction(input: String, spinner_prio: String) {
         setResult(
             Activity.RESULT_OK,
             Intent(this, TodoActivity::class.java)
                 .putExtra(TodoActivity.resultInput, input)
+                .putExtra(TodoActivity.resultPriority, spinner_prio)
         )
         finish()
     }
