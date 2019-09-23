@@ -21,7 +21,6 @@ class TodoFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actions = arguments?.getParcelableArrayList(actionParams) ?: listOf()
-
     }
 
 
@@ -44,8 +43,6 @@ class TodoFragment : Fragment() {
                 todoListAdapter.data = actions
             }
         }
-
-
     }
 
     companion object {
@@ -59,6 +56,5 @@ class TodoFragment : Fragment() {
                 putParcelableArrayList(actionParams, actions)
             }
         }
-
     }
 }

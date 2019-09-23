@@ -6,10 +6,7 @@ import android.renderscript.RenderScript
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.example.listas.R
@@ -20,10 +17,7 @@ import kotlinx.android.synthetic.main.layout_todo_row.*
 class AddFragment : Fragment() {
 
     lateinit var spinner_cat : Spinner
-    lateinit var spinner_text : TextView
-
     lateinit var spinner_prio : Spinner
-    lateinit var spinner_text_prio : TextView
 
     interface OnFragmentInteractionListener {
         fun onFragmentInteraction(input: String, spinner_prio: String, color: String)
@@ -38,7 +32,6 @@ class AddFragment : Fragment() {
         } else {
             throw RuntimeException("$context must implement OnFragmentInteractionListener")
         }
-
     }
 
     override fun onCreateView(
@@ -56,16 +49,13 @@ class AddFragment : Fragment() {
 
         // SPINNER DE LAS CATEGORIAS
         spinner_cat = view.findViewById(R.id.spinner_category) as Spinner
-        spinner_text = view.findViewById(R.id.spinner_text) as TextView
 
         val spinnercats = arrayOf("Work","Study","Shopping","Leisure")
 
         spinner_cat.adapter = ArrayAdapter<String>( view.context, android.R.layout.simple_list_item_1,spinnercats)
-
         spinner_cat.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                spinner_text.text = " Please select an category"
             }
 
             override fun onItemSelected(
@@ -74,23 +64,19 @@ class AddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                //spinner_text.text = spinnercats.get(position)
             }
         }
 
         // SPINNER DE LAS PRIORIDADES
 
         spinner_prio = view.findViewById(R.id.spinner_prio) as Spinner
-        spinner_text_prio = view.findViewById(R.id.spinner_text_prio) as TextView
 
         val spinnerprio = arrayOf("High Priority","Medium Priority", "Low Priority")
 
         spinner_prio.adapter = ArrayAdapter<String>( view.context, android.R.layout.simple_list_item_1,spinnerprio)
-
         spinner_prio.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                spinner_text_prio.text = " Please select an priority"
             }
 
             override fun onItemSelected(
@@ -99,18 +85,25 @@ class AddFragment : Fragment() {
                 position: Int,
                 id: Long
             ) {
-                spinner_text.text = spinnercats.get(position)
-             //   priority.text = spinnercats.get(position)
+
             }
-
         }
-
     }
 
     private fun onAddButtonPressed() {
         if (input.textString().isEmpty()) {
+            Toast.makeText(context, "You must enter a Task", Toast.LENGTH_SHORT).show()
             return
         }
+        if (spinner_prio.selectedItem.toString().isEmpty()){
+            Toast.makeText(context, "You must enter a Priority.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (spinner_cat.selectedItem.toString().isEmpty()){
+            Toast.makeText(context, "You must enter a Category.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         listener?.onFragmentInteraction(input.textString(),spinner_prio.selectedItem.toString(),spinner_cat.selectedItem.toString())
     }
 

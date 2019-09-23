@@ -18,7 +18,7 @@
         <item>Compras</item>
         <item>Ocio</item>
     </string-array>
-    <string name="title_prioridad">Prioridad</string>
+    <string name="title_prioridad">Priority</string>
     <string-array name="propiedades">
         <item>High Priority</item>
         <item>Medium Priority</item>
