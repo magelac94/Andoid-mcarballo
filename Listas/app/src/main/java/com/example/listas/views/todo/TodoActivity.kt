@@ -50,30 +50,6 @@ class TodoActivity : AppCompatActivity() {
         }
     }
 
-    // Funcion para tachar el textview cuando checkbox se tilda
-    fun onCheckboxClicked2(view: View) {
-
-        var txt = findViewById(R.id.todoAction) as TextView
-        var prio = findViewById(R.id.priority) as TextView
-
-        if (view is CheckBox) {
-            val checked: Boolean = view.isChecked
-
-            when (view.id) {
-                R.id.checkBox1 -> {
-                    if (checked) {
-                        txt.paintFlags = txt.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                        prio.paintFlags = prio.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                    } else {
-                        txt.paintFlags = txt.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
-                        prio.paintFlags = prio.paintFlags xor Paint.STRIKE_THRU_TEXT_FLAG
-                    }
-                }
-            }
-        }
-    }
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_todo)
